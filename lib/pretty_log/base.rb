@@ -6,7 +6,7 @@ module PrettyLog
   def pretty_log(columns = nil)
     (columns || self.class.printable_fields).collect {|name|
       if has_attribute?(name)
-       "#{ANSI.send(PrettyLog.config.key_colour)} #{name}: #{ANSI.send(PrettyLog.config.value_colour)} #{self.send(name)}"
+       "#{ANSI.send(PrettyLog.config.key_color)} #{name}: #{ANSI.send(PrettyLog.config.value_color)} #{self.send(name)}"
       end
     }.compact.join(PrettyLog.config.seperator)
   end
@@ -18,11 +18,11 @@ module PrettyLog
   end
 
   class Configuration
-    #key colour
-    attr_accessor :key_colour
+    #key color
+    attr_accessor :key_color
 
     #value colour
-    attr_accessor :value_colour
+    attr_accessor :value_color
 
     #Seperator
     attr_accessor :seperator
@@ -34,8 +34,8 @@ module PrettyLog
     end
 
     def initialize_defaults
-      @key_colour ||= 'green'
-      @value_colour ||= 'blue'
+      @key_color ||= 'green'
+      @value_color ||= 'blue'
       @seperator ||= ', '
     end
   end
